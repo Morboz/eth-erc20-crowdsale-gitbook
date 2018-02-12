@@ -1,0 +1,543 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>2.4.使用ERC代币进行众筹 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    
+    <link rel="prev" href="erc20-practice.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" >
+            
+                <span>
+            
+                    
+                    智能合约简介
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="smart_contract_intro.html">
+            
+                <a href="smart_contract_intro.html">
+            
+                    
+                    1.1.智能合约简介
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" >
+            
+                <span>
+            
+                    
+                    发行ERC20标准Token和简单众筹合约实践
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="dev_environ_build.html">
+            
+                <a href="dev_environ_build.html">
+            
+                    
+                    2.1.搭建开发环境
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="erc20_intro.html">
+            
+                <a href="erc20_intro.html">
+            
+                    
+                    2.2.ERC20标准
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="erc20-practice.html">
+            
+                <a href="erc20-practice.html">
+            
+                    
+                    2.3.发行Token
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.3.4" data-path="crowdsale-practice.html">
+            
+                <a href="crowdsale-practice.html">
+            
+                    
+                    2.4.使用ERC代币进行众筹
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="." >2.4.使用ERC代币进行众筹</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h3 id="&#x4F7F;&#x7528;erc20&#x6807;&#x51C6;&#x7684;token&#x8FDB;&#x884C;&#x4F17;&#x7B79;">&#x4F7F;&#x7528;ERC20&#x6807;&#x51C6;&#x7684;Token&#x8FDB;&#x884C;&#x4F17;&#x7B79;</h3>
+<h4 id="&#x4F17;&#x7B79;&#x5408;&#x7EA6;&#x5185;&#x5BB9;">&#x4F17;&#x7B79;&#x5408;&#x7EA6;&#x5185;&#x5BB9;</h4>
+<p>&#x5408;&#x7EA6;&#x4E2D;&#x6709;&#x4E24;&#x79CD;&#x89D2;&#x8272;&#xFF1A;</p>
+<ol>
+<li>&#x53D1;&#x8D77;&#x4F17;&#x7B79;&#x7684;&#x53D7;&#x76CA;&#x4EBA;beneficiary</li>
+<li>&#x53C2;&#x4E0E;&#x4F17;&#x7B79;&#x7684;&#x8D21;&#x732E;&#x8005;contributor</li>
+</ol>
+<p>&#x8FD9;&#x662F;&#x4E00;&#x4E2A;&#x7B80;&#x5316;&#x7684;&#xFF0C;&#x7406;&#x60F3;&#x7684;&#x4F17;&#x7B79;&#x5408;&#x7EA6;&#x3002;
+&#x5408;&#x7EA6;&#x4E2D;&#xFF0C;&#x4F17;&#x7B79;&#x4EBA;&#x53D1;&#x5E03;100&#x4E2A;Token&#xFF0C;&#x76EE;&#x6807;&#x7B79;&#x96C6;50 eth&#xFF0C;&#x5E76;&#x8BBE;&#x5B9A;&#x4F17;&#x7B79;&#x7684;&#x65F6;&#x95F4;&#xFF0C;Token&#x4E0E;eth&#x6C47;&#x7387;&#x662F;1&#xFF1A;10&#x3002;
+&#x5408;&#x7EA6;&#x4F1A;&#x6267;&#x884C;&#xFF1A;</p>
+<ol>
+<li>&#x53D7;&#x76CA;&#x4EBA;&#x53D1;&#x884C;&#x603B;&#x91CF;&#x4E3A;100.0&#x7684;Token&#xFF0C;&#x6240;&#x6709;Token&#x53D1;&#x884C;&#x65F6;&#x90FD;&#x5728;&#x53D7;&#x76CA;&#x4EBA;&#x7684;&#x8D26;&#x6237;&#x4E2D;&#x3002;</li>
+<li>&#x540C;&#x65F6;&#xFF0C;&#x53D7;&#x76CA;&#x4EBA;&#x5F00;&#x542F;&#x4F17;&#x7B79;&#xFF0C;&#x4F17;&#x7B79;&#x5408;&#x7EA6;&#x6709;&#x521D;&#x59CB;&#x5316;&#x53C2;&#x6570;&#xFF1A;&#x76EE;&#x6807;&#x7B79;&#x96C6;eth&#x6570;&#x91CF;&#x3001;token&#x4E0E;eth&#x5151;&#x6362;&#x6BD4;&#x7387;&#x3001;&#x4F17;&#x7B79;&#x65F6;&#x957F;&#x3001;&#x8FBE;&#x5230;&#x76EE;&#x6807;&#x7684;&#x65F6;&#x95F4;&#x3002;</li>
+<li>&#x8D21;&#x732E;&#x8005;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x8C03;&#x7528;&#x5408;&#x7EA6;&#x4E2D;&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x82B1;&#x8D39;eth&#x8D2D;&#x4E70;&#x5BF9;&#x5E94;&#x6570;&#x989D;&#x7684;Token&#x3002;</li>
+<li>&#x4F17;&#x7B79;&#x6301;&#x7EED;&#x65F6;&#x95F4;&#x7ED3;&#x675F;&#x4E4B;&#x540E;&#xFF0C;&#x5982;&#x679C;&#x4F17;&#x7B79;&#x7684;&#x6570;&#x989D;&#x8FBE;&#x5230;&#x4E86;&#x9884;&#x671F;&#x8BBE;&#x5B9A;&#x7684;&#x76EE;&#x6807;&#xFF0C;&#x53D7;&#x76CA;&#x4EBA;&#x4FBF;&#x53EF;&#x4EE5;&#x5C06;&#x4F17;&#x7B79;&#x7684;eth&#x4ECE;&#x5408;&#x7EA6;&#x603B;&#x5168;&#x90E8;&#x53D6;&#x51FA;&#x3002;
+&#x5982;&#x679C;&#x4F17;&#x7B79;&#x7684;&#x6570;&#x989D;&#x6CA1;&#x6709;&#x8FBE;&#x5230;&#x9884;&#x671F;&#x8BBE;&#x5B9A;&#x7684;&#x76EE;&#x6807;&#xFF0C;&#x90A3;&#x4E48;&#x6240;&#x6709;&#x53C2;&#x4E0E;&#x4F17;&#x7B79;&#x7684;&#x8D21;&#x732E;&#x8005;&#x53EF;&#x4EE5;&#x53D6;&#x56DE;&#x81EA;&#x5DF1;&#x7684;eth&#x3002;</li>
+</ol>
+<p>&#x4E0B;&#x9762;&#x662F;CrowdSale&#x7684;&#x7C7B;&#x56FE;&#xFF1A;</p>
+<p><img src="images/CrowdSale.png" alt="CrowdSale"></p>
+<h4 id="trufflezeppelin-solidity&#x5E93;&#x7684;&#x7B80;&#x5355;&#x5B9E;&#x73B0;">truffle+zeppelin-solidity&#x5E93;&#x7684;&#x7B80;&#x5355;&#x5B9E;&#x73B0;</h4>
+<h5 id="&#x90E8;&#x7F72;&#x5408;&#x7EA6;">&#x90E8;&#x7F72;&#x5408;&#x7EA6;</h5>
+<p>&#x521B;&#x5EFA;&#x5DE5;&#x4F5C;&#x7A7A;&#x95F4;&#xFF0C;truffle&#x521D;&#x59CB;&#x5316;&#xFF0C;&#x5F15;&#x5165;zeppelin-solidity&#x5E93;&#xFF0C;&#x4E0E;2.3&#x6B65;&#x9AA4;&#x51E0;&#x4E4E;&#x76F8;&#x540C;&#x3002;</p>
+<p>&#x4E0B;&#x9762;&#x662F;Contract&#x7684;code&#x3002;</p>
+<p>MyToken.sol:</p>
+<pre><code>pragma solidity ^0.4.17;
+
+import &apos;zeppelin-solidity/contracts/token/ERC20/StandardToken.sol&apos;;
+
+contract MyToken is StandardToken {
+
+    string public name = &apos;MyToken&apos;;
+    string public symbol = &apos;MT&apos;;
+    uint8 public decimals = 2;
+    uint public INITIAL_SUPPLY = 100;
+
+    function MyToken() public {
+         totalSupply_ = INITIAL_SUPPLY;
+         balances[msg.sender] = INITIAL_SUPPLY;
+    }
+}
+</code></pre><p>Crowdsale.sol</p>
+<pre><code>pragma solidity ^0.4.16;
+
+import &quot;./MyToken.sol&quot;;
+
+contract Crowdsale {
+    address public beneficiary;
+    uint public fundingGoal;
+    uint public amountRaised;
+    uint public deadline;
+    uint public price;
+    MyToken public tokenReward;
+    mapping(address =&gt; uint256) public balanceOf;
+    bool fundingGoalReached = false;
+    bool crowdsaleClosed = false;
+
+    event GoalReached(address recipient, uint totalAmountRaised);
+    event FundTransfer(address backer, uint amount, bool isContribution);
+
+    /**
+     * Constrctor function
+     *
+     * Setup the owner
+     */
+    function Crowdsale(
+        address ifSuccessfulSendTo,
+        uint fundingGoalInEthers,
+        uint durationInMinutes,
+        uint etherCostOfEachToken
+    ) {
+        beneficiary = ifSuccessfulSendTo;
+        fundingGoal = fundingGoalInEthers * 1 ether;
+        deadline = now + durationInMinutes * 1 minutes;
+        price = etherCostOfEachToken * 1 ether;
+        // tokenReward = token(addressOfTokenUsedAsReward);
+        tokenReward = new MyToken();
+    }
+
+    /**
+     * &#x8D2D;&#x4E70;token, &#x8C03;&#x7528;&#x8005;&#x8C03;&#x7528;&#x5408;&#x7EA6;&#x9644;&#x5E26;&#x7684;&#x6240;&#x6709;eth&#x5C06;&#x7528;&#x6765;&#x8D2D;&#x4E70;token
+     */
+    function buyTokens() payable {
+        require(!crowdsaleClosed);
+        uint amount = msg.value;
+        balanceOf[msg.sender] += amount;
+        amountRaised += amount;
+        tokenReward.transfer(msg.sender, amount / price);
+        FundTransfer(msg.sender, amount, true);
+    }
+
+    /**
+     * &#x67E5;&#x8BE2;token&#x7684;&#x4F59;&#x989D;&#x3002;
+     */
+    function tokenOwned(address who) public view returns (uint256) {
+        return tokenReward.balanceOf(who);
+    }
+
+
+    modifier afterDeadline() { if (now &gt;= deadline) _; }
+
+    /**
+     * Check if goal was reached
+     *
+     * Checks if the goal or time limit has been reached and ends the campaign
+     */
+    function checkGoalReached() afterDeadline {
+        if (amountRaised &gt;= fundingGoal){
+            fundingGoalReached = true;
+            GoalReached(beneficiary, amountRaised);
+        }
+        crowdsaleClosed = true;
+    }
+
+
+    /**
+     * Withdraw the funds
+     *
+     * Checks to see if goal or time limit has been reached, and if so, and the funding goal was reached,
+     * sends the entire amount to the beneficiary. If goal was not reached, each contributor can withdraw
+     * the amount they contributed.
+     */
+    function safeWithdrawal() afterDeadline {
+        if (!fundingGoalReached) {
+            uint amount = balanceOf[msg.sender];
+            balanceOf[msg.sender] = 0;
+            if (amount &gt; 0) {
+                if (msg.sender.send(amount)) {
+                    FundTransfer(msg.sender, amount, false);
+                } else {
+                    balanceOf[msg.sender] = amount;
+                }
+            }
+        }
+
+        if (fundingGoalReached &amp;&amp; beneficiary == msg.sender) {
+            if (beneficiary.send(amountRaised)) {
+                FundTransfer(beneficiary, amountRaised, false);
+            } else {
+                //If we fail to send the funds to beneficiary, unlock funders balance
+                fundingGoalReached = false;
+            }
+        }
+    }
+}
+</code></pre><p>truffle&#x90E8;&#x7F72;&#x7684;js&#x5982;&#x4E0B;&#xFF0C;&#x6CE8;&#x610F;Crowdsale&#x7684;&#x6784;&#x9020;&#x51FD;&#x6570;&#x662F;&#x5E26;&#x53C2;&#x7684;&#xFF0C;&#x6240;&#x4EE5;&#x5728;&#x90E8;&#x7F72;&#x65F6;&#x8981;&#x628A;&#x53C2;&#x6570;&#x4F20;&#x9012;&#x8FC7;&#x53BB;&#xFF0C;&#x8FD9;&#x91CC;&#x7B2C;&#x4E00;&#x4E2A;&#x5730;&#x5740;&#x662F;ganache&#x81EA;&#x5E26;&#x7684;10&#x4E2A;&#x8D26;&#x6237;&#x4E2D;&#x7684;&#x7B2C;&#x4E00;&#x4E2A;&#x7684;address&#x3002;</p>
+<pre><code>var Crowdsale = artifacts.require(&quot;Crowdsale&quot;);
+
+module.exports = function(deployer) {
+    deployer.deploy(Crowdsale, &quot;0x627306090abaB3A6e1400e9345bC60c78a8BEf57&quot;, 1000, 20, 10);
+};
+</code></pre><p>&#x90E8;&#x7F72;&#x8FC7;&#x7A0B;&#x4E0E;2.3&#x4ECB;&#x7ECD;&#x7684;&#x76F8;&#x540C;&#xFF0C;&#x7F16;&#x8BD1;&#x540E;&#xFF0C;&#x5F00;&#x542F;ganache&#xFF0C;&#x5728;<code>truffle.js</code>&#x4E2D;&#x914D;&#x7F6E;&#x597D;&#x8FDE;&#x63A5;&#x5230;ganache&#x8282;&#x70B9;&#x540E;&#xFF0C;&#x7136;&#x540E;&#x5C06;&#x5408;&#x7EA6;&#x90E8;&#x7F72;&#x4E0A;&#x53BB;&#x3002;</p>
+<p>&#x7F16;&#x8BD1;&#x8FC7;&#x7A0B;&#x4E2D;&#x6216;&#x62A5;&#x51FA;&#x5F88;&#x591A;&#x8B66;&#x544A;&#xFF0C;&#x63D0;&#x793A;&#x65B9;&#x6CD5;&#x6CA1;&#x6709;&#x660E;&#x786E;&#x53EF;&#x89C1;&#x6027;&#xFF0C;&#x56E0;&#x4E3A;&#x9ED8;&#x8BA4;&#x662F;public&#x7684;&#xFF0C;&#x8B66;&#x544A;&#x5FFD;&#x7565;&#x6389;&#x5C31;&#x884C;&#x3002;</p>
+<h5 id="&#x8FD0;&#x884C;&#x5408;&#x7EA6;">&#x8FD0;&#x884C;&#x5408;&#x7EA6;</h5>
+<p>&#x8FD9;&#x6B21;&#x6211;&#x4F7F;&#x7528;truffle&#x7684;console&#x4E0E;&#x5408;&#x7EA6;&#x8FDB;&#x884C;&#x4EA4;&#x4E92;&#x3002;</p>
+<pre><code>truffle console
+</code></pre><p>&#x8FDB;&#x5165;&#x63A7;&#x5236;&#x53F0;&#x540E;&#xFF0C;&#x4E3A;&#x4E86;&#x7B80;&#x5316;&#x5408;&#x7EA6;&#x7684;&#x8C03;&#x7528;&#xFF0C;&#x8FD8;&#x8981;&#x624B;&#x52A8;&#x5C01;&#x88C5;&#x4E00;&#x4E0B;&#x547D;&#x4EE4;&#x3002;</p>
+<pre><code>var app = Crowdsale.deployed().then(function(instance){app = instance;})
+</code></pre><p>&#x5C01;&#x88C5;Crowdsale&#x5408;&#x7EA6;&#x3002;&#x7136;&#x540E;&#x8C03;&#x7528;&#x5408;&#x7EA6;&#x7684;&#x65B9;&#x6CD5;&#x53C2;&#x4E0E;&#x4F17;&#x7B79;&#x3002;&#x4F7F;&#x7528;ganache&#x521B;&#x5EFA;&#x597D;&#x7684;10&#x4E2A;&#x7528;&#x6237;&#x4E4B;&#x4E2D;&#x7684;&#x7B2C;&#x4E8C;&#x4E2A;&#x7528;&#x6237;&#xFF0C;&#x8FDB;&#x884C;token&#x8D2D;&#x4E70;&#x3002;</p>
+<pre><code>app.buyTokens({from:web3.eth.accounts[1], value:50*1000000000000000000})
+</code></pre><p>&#x5176;&#x4E2D;buyTokens&#x65B9;&#x6CD5;&#x672C;&#x8EAB;&#x662F;&#x65E0;&#x53C2;&#x7684;&#xFF0C;&#x4F46;&#x662F;&#x53EF;&#x4EE5;&#x6539;&#x53D8;&#x8FD9;&#x4E00;&#x6B21;&#x8C03;&#x7528;&#x7684;&#x4FE1;&#x606F;<code>msg</code>&#x7684;&#x4E00;&#x4E9B;&#x53C2;&#x6570;&#xFF0C;&#x8FD9;&#x91CC;&#x4FEE;&#x6539;&#x4E86;&#x65B9;&#x6CD5;&#x8C03;&#x7528;&#x4EBA;&#x4E3A;<code>accounts[1]</code>,
+&#x53D1;&#x9001;&#x7ED9;&#x5408;&#x7EA6;&#x7684;eth&#x4E3A;50&#xFF0C;&#x7531;&#x4E8E;&#x8FD9;&#x91CC;value&#x662F;&#x4F7F;&#x7528;<code>wei</code>&#xFF0C;eth&#x4E2D;&#x6700;&#x5C0F;&#x7684;&#x8BA1;&#x91CF;&#x5355;&#x4F4D;&#xFF0C;<code>1 eth = 10 ** 18 wei</code>&#xFF0C;&#x6240;&#x4EE5;&#x8981;&#x4E58;&#x4E0A;10^18&#x3002;
+&#x8C03;&#x7528;&#x6210;&#x529F;&#x540E;&#x6E56;&#x51FA;&#x73B0;&#x4E0B;&#x9762;&#x7684;tx&#x4FE1;&#x606F;&#xFF1A;</p>
+<pre><code>truffle(development)&gt; app.buyTokens({from:web3.eth.accounts[1],value:50*1000000000000000000})
+   { tx: &apos;0xa88762eb901fb75aecddd529c0dd0b61e275bda3fe757784ff90c09dc8c81b32&apos;,
+     receipt: 
+      { transactionHash: &apos;0xa88762eb901fb75aecddd529c0dd0b61e275bda3fe757784ff90c09dc8c81b32&apos;,
+        transactionIndex: 0,
+        blockHash: &apos;0xe4c5594983760209ed5336a2c03d45c966500704b1b9cd991e45a00d5b877be2&apos;,
+        blockNumber: 5,
+        gasUsed: 94866,
+        cumulativeGasUsed: 94866,
+        contractAddress: null,
+        logs: [ [Object], [Object] ],
+        status: &apos;0x01&apos;,
+        logsBloom: &apos;0x00400000000000000000000000000000000000000000004000000000000080000000000000000020000000000000000000000000000000000000000000000000400000000000000000000008000000000000000000010000000080000000000000000000000000000000000000000000000000000000000000000010000000000400000000010000000000000000000000000000000000000000000080000000000000000000000000000000000000000000000000000000000000000000000000000002000000000080000000001000000000000000004000000000000000001000000000000000000000000000000000000000000000000010000000000000&apos; },
+     logs: 
+      [ { logIndex: 1,
+          transactionIndex: 0,
+          transactionHash: &apos;0xa88762eb901fb75aecddd529c0dd0b61e275bda3fe757784ff90c09dc8c81b32&apos;,
+          blockHash: &apos;0xe4c5594983760209ed5336a2c03d45c966500704b1b9cd991e45a00d5b877be2&apos;,
+          blockNumber: 5,
+          address: &apos;0x345ca3e014aaf5dca488057592ee47305d9b3e10&apos;,
+          type: &apos;mined&apos;,
+          event: &apos;FundTransfer&apos;,
+          args: [Object] } ] }
+</code></pre><p>&#x7136;&#x540E;&#x53EF;&#x4EE5;&#x770B;&#x5230;ganache&#x4E2D;ac2&#x7684;eth&#x51CF;&#x5C11;&#x4E86;50&#xFF1A;
+<img src="images/erc20-crowdsale-after-buytokens.png" alt="after-buy-tokens"></p>
+<p>&#x67E5;&#x8BE2;token&#xFF0C;&#x8FD4;&#x56DE;&#x7684;BigNumber&#x7684;&#xFF0C;&#x770B;&#x4E0D;&#x592A;&#x61C2;&#xFF0C;&#x8F6C;&#x6362;&#x6210;number</p>
+<pre><code>truffle(development)&gt; app.tokenOwned(web3.eth.accounts[1])
+BigNumber { s: 1, e: 0, c: [ 5 ] }
+truffle(development)&gt; app.tokenOwned(web3.eth.accounts[1]).then(function(balance){console.log(balance.toNumber())})
+5
+</code></pre><p>50&#x4E2A;eth&#x8D2D;&#x4E70;&#x4E86;5&#x4E2A;token&#x3002;&#x518D;&#x67E5;&#x8BE2;&#x4E0B;&#x4F17;&#x7B79;&#x7684;eth&#x603B;&#x91CF;&#x3002;&#x540C;&#x6837;&#x9700;&#x8981;&#x8F6C;&#x5316;&#x5355;&#x4F4D;&#x3002;</p>
+<pre><code>truffle(development)&gt; app.amountRaised.call().then(function(amount){console.log(web3.fromWei(amount.toNumber(), &apos;ether&apos;))})
+50
+</code></pre><p>&#x53EF;&#x4EE5;&#x770B;&#x5230;&#xFF0C;&#x5728;&#x4F17;&#x7B79;&#x8FDB;&#x884C;&#x4E2D;&#xFF0C;&#x8D2D;&#x4E70;token&#x7684;&#x52A8;&#x4F5C;&#x53EF;&#x4EE5;&#x6B63;&#x786E;&#x6267;&#x884C;&#x3002;</p>
+<h6 id="&#x5408;&#x7EA6;&#x7ED3;&#x675F;&#x60C5;&#x51B5;1&#xFF1A;&#x6210;&#x529F;&#x52DF;&#x96C6;&#x5230;&#x76EE;&#x6807;&#x91D1;&#x989D;">&#x5408;&#x7EA6;&#x7ED3;&#x675F;&#x60C5;&#x51B5;1&#xFF1A;&#x6210;&#x529F;&#x52DF;&#x96C6;&#x5230;&#x76EE;&#x6807;&#x91D1;&#x989D;</h6>
+<pre><code>truffle(development)&gt; app.checkGoalReached()
+truffle(development)&gt; app.safeWithdrawal({from:web3.eth.accounts[0]})
+</code></pre><p>&#x7ED3;&#x679C;&#x5982;&#x4E0B;&#xFF1A;</p>
+<p><img src="images/erc20-crowdsale-reach-goal.png" alt="goal-reached"></p>
+<h6 id="&#x5408;&#x7EA6;&#x7ED3;&#x675F;&#x60C5;&#x51B5;2&#xFF1A;&#x672A;&#x80FD;&#x6210;&#x529F;&#x52DF;&#x96C6;&#x5230;&#x76EE;&#x6807;&#x91D1;&#x989D;">&#x5408;&#x7EA6;&#x7ED3;&#x675F;&#x60C5;&#x51B5;2&#xFF1A;&#x672A;&#x80FD;&#x6210;&#x529F;&#x52DF;&#x96C6;&#x5230;&#x76EE;&#x6807;&#x91D1;&#x989D;</h6>
+<p>&#x5173;&#x95ED;ganache&#xFF0C;&#x91CD;&#x65B0;&#x542F;&#x52A8;&#xFF0C;ganache&#x79C1;&#x6709;&#x94FE;&#x72B6;&#x6001;&#x4F1A;&#x91CD;&#x7F6E;&#xFF0C;&#x518D;&#x5C06;&#x5408;&#x7EA6;&#x91CD;&#x65B0;&#x90E8;&#x7F72;&#x5230;&#x94FE;&#x4E0A;&#x3002;
+&#x8FD9;&#x6B21;&#x4F7F;index&#x4E3A;1&#xFF0C;2&#x7684;&#x4E24;&#x4E2A;&#x7528;&#x6237;&#x53C2;&#x4E0E;&#x4F17;&#x7B79;&#xFF0C;&#x6BCF;&#x4EBA;&#x8D2D;&#x4E70;20eth&#x7684;token&#xFF0C;&#x7B49;&#x5230;&#x4F17;&#x7B79;&#x65F6;&#x95F4;&#x7ED3;&#x675F;&#x65F6;&#xFF0C;
+&#x5C06;&#x4E0D;&#x80FD;&#x8FBE;&#x5230;&#x4F17;&#x7B79;&#x7684;&#x76EE;&#x6807;&#x3002;ac1&#x548C;ac2&#x53EF;&#x4EE5;&#x6B63;&#x5E38;&#x7684;&#x53D6;&#x56DE;&#x81EA;&#x5DF1;&#x7684;eth&#x3002;</p>
+<p><img src="images/erc20-crowdsale-fail-after-buy-tokens.png" alt="goal-failed-after-buy-tokens"></p>
+<pre><code>truffle(development)&gt; app.checkGoalReached()
+truffle(development)&gt; app.safeWithdrawal({from:web3.eth.accounts[0]})
+truffle(development)&gt; app.safeWithdrawal({from:web3.eth.accounts[1]})
+truffle(development)&gt; app.safeWithdrawal({from:web3.eth.accounts[2]})
+</code></pre><p>&#x7ED3;&#x679C;&#x5982;&#x4E0B;&#xFF1A;</p>
+<p><img src="images/erc20-after-goal-failed.png" alt="goal-failed-after-withdrawal"></p>
+<p>&#x770B;&#x5230;ac1&#x548C;ac2&#x7684;eth&#x5DF2;&#x7ECF;&#x9000;&#x56DE;&#x5230;&#x4E86;&#x539F;&#x6765;&#x7684;&#x8D26;&#x6237;&#x4E2D;&#x3002;&#x5408;&#x7EA6;&#x53EF;&#x4EE5;&#x6309;&#x7167;&#x63CF;&#x8FF0;&#x6B63;&#x786E;&#x6267;&#x884C;&#x3002;</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="erc20-practice.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: 2.3.发行Token">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"2.4.使用ERC代币进行众筹","level":"1.3.4","depth":2,"previous":{"title":"2.3.发行Token","level":"1.3.3","depth":2,"path":"erc20-practice.md","ref":"erc20-practice.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"crowdsale-practice.md","mtime":"2018-02-12T02:33:53.854Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-02-12T01:57:00.997Z"},"basePath":".","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="gitbook/gitbook.js"></script>
+    <script src="gitbook/theme.js"></script>
+    
+        
+        <script src="gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
