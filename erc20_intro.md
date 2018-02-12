@@ -1,5 +1,3 @@
-### solidity语言
-
 ### ERC20标准
    先介绍下EIP，全称是Ethereum Improvement Proposals，以太坊改善建议。任何人都可以在Github上提建议，你的建议有可能被采纳，也有可能被拒绝。
    

@@ -1,4 +1,4 @@
-# 智能合约和发行Token代币实践
+# 智能合约与发行ERC20标准Token和简单众筹合约实践
 * [Introduction](README.md)
 * 智能合约简介
     * [1.1.智能合约简介](smart_contract_intro.md)
